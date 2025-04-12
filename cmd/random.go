@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -38,7 +37,7 @@ type Joke struct {
 	Status int    `json:"status"`
 }
 
-func getRandomJoke() {
+func getRandomJoke() string {
 	url := "https://icanhazdadjoke.com"
 	responseByte := getJokeData(url)
 
@@ -47,7 +46,9 @@ func getRandomJoke() {
 		log.Printf("Could not unmarshal respnse %v", err)
 	}
 
-	fmt.Println(string(joke.Joke))
+	// fmt.Println(string(joke.Joke))
+
+	return string(joke.Joke)
 }
 
 func getJokeData(baseurl string) []byte {
